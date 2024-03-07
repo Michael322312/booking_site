@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block body %}
+    <h2>{{hotel.name}}</h2>
+    <div style="margin: 20px;">
+        Country: {{hotel.country}}
+        <br><br>
+        City: {{hotel.city}}
+        <br><br>
+        Info:
+        <div style="width: 300px; margin: 10px; text-align:justify;">{{hotel.info}}</div>
+    </div>
+    <div>
+        <h3>Here is list of avaliable rooms</h3>
+        <ul style="margin: 10px;">
+            {%for room in hotel.rooms.all%}
+                <a href="/booking/{{room.id}}" style="text-decoration: inherit; color: black;">
+                    <li style="border-style: groove; width: 200px; font-size: large;">
+                        Room number {{room.number}}
+                        <br>
+                        <div style="font-size: smaller; margin-left: 10px">
+                            Capacity: {{room.capacity}}
+                            <br>
+                            Price: {{room.price}} $
+                            <br>
+                            Description: {{room.description}}
+                        </div>
+                    </li>
+                </a>
+            {%endfor%}
+        </ul>
+    </div>  
+{% endblock body %}

@@ -11,10 +11,12 @@ class Hotel(models.Model):
 
     def __str__(self):
         return self.name
+    
 
     class Meta:
         verbose_name = "Hotel"
         verbose_name_plural = "Hotels"
+
 
 
 class Room(models.Model):
@@ -35,7 +37,7 @@ class Room(models.Model):
 
 
 class Booking(models.Model):
-    room = models.ForeignKey(Room, on_delete = models.CASCADE, related_name="booked")
+    room = models.ForeignKey(Room, on_delete = models.CASCADE, related_name="booked", unique = True)
     user = models.ForeignKey(User, on_delete = models.CASCADE, related_name = "booked")
 
     start_time = models.DateTimeField()

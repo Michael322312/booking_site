@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% load countries %}
+
+{% block body %}
+    <h2>Where you are going to travel?</h2>
+    <form action="/country_hotels" method="get">
+    {% csrf_token %}
+
+        <select name="country" id="country">
+            {%for country in countries%}
+                {% get_country country as country_obj %}
+                <option value="{{country}}">{{country_obj.name}}</option>
+            {%endfor%}
+        </select>
+        
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock body %}

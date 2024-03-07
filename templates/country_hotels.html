@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block body %}
+    <h2>Avaliabe hotels</h2>
+    <ul>
+        {%for hotel in hotels%}
+            <a href="/hotel/{{hotel.id}}" style="text-decoration: inherit; color: black;">
+                <li style="border-style: groove; width: 200px; font-size: large; padding: 2px;">
+                    {{hotel.name}}
+                    <br>
+                    <div style="margin: 5px;font-size: smaller;">City: {{hotel.city}}</div>
+                </li>
+            </a>
+        {%endfor%}
+    </ul>
+{% endblock body %}

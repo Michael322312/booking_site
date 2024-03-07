@@ -1,0 +1,27 @@
+
+{% extends 'index.html' %}
+{% block body %}
+    {% if request.user.is_authenticated %}
+        <h1>Booking form</h1>
+        <div style="padding: 10px">
+            Room {{room.number}}
+            <br>
+            <br>
+            Price {{room.price}} $
+        </div>
+        <form action="" method="POST" style="padding: 10px">
+        {% csrf_token %}
+            <input name="start_time" id="start_time" type="datetime-local">
+            <br>
+            <input name="end_time" id="end_time" type="datetime-local">
+            <br>
+            
+            <br>
+            <button type="submit">Book room</button>
+        </form>
+        
+    {% else %}
+        <h1>Unauthenticated users can't book a room!</h1>
+    {%endif%}
+
+{% endblock body %}
