@@ -12,6 +12,11 @@ class Hotel(models.Model):
     def __str__(self):
         return self.name
     
+    def free_rooms(self):
+        booked_rooms = [i.room for i in Booking.objects.all()]
+        free_rooms = [room for room in self.rooms.all() if room not in booked_rooms]
+        return free_rooms
+
 
     class Meta:
         verbose_name = "Hotel"

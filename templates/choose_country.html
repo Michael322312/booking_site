@@ -2,18 +2,18 @@
 {% load countries %}
 
 {% block body %}
-    <h2>Where you are going to travel?</h2>
-    <form action="/country_hotels" method="get">
-    {% csrf_token %}
+    <div class="position-absolute top-50 start-50 translate-middle">   
+        <h2 class="m-2 mb-4 ">Where you are going to travel?</h2>
+        <form action="/country_hotels" method="get" class="">
+        {% csrf_token %}
+            <select name="country" id="country" class="form-select w-50 m-2 mb-3" aria-label="Default select example">
+                {%for country in countries%}
+                    {% get_country country as country_obj %}
+                    <option value="{{country}}">{{country_obj.name}}</option>
+                {%endfor%}
+            </select>
 
-        <select name="country" id="country">
-            {%for country in countries%}
-                {% get_country country as country_obj %}
-                <option value="{{country}}">{{country_obj.name}}</option>
-            {%endfor%}
-        </select>
-        
-        <br>
-        <button type="submit">Submit</button>
-    </form>
+            <button type="submit" class="m-2 btn btn-primary me-md-2 mb-3">Submit</button>
+        </form>
+    </div>
 {% endblock body %}

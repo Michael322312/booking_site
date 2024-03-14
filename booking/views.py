@@ -18,7 +18,8 @@ def get_countries(request):
 def get_hotels_in_country(request):
     hotels = Hotel.objects.filter(country=request.GET.get('country'))
     context = {
-        "hotels": hotels
+        "hotels": hotels,
+        
     }
     return render(
         request,
