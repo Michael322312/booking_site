@@ -2,26 +2,40 @@
 {% extends 'index.html' %}
 {% block body %}
     {% if request.user.is_authenticated %}
-        <h1>Booking form</h1>
-        <div style="padding: 10px">
-            Room {{room.number}}
-            <br>
-            <br>
-            Price {{room.price}} $
-        </div>
-        <form action="" method="POST" style="padding: 10px">
-        {% csrf_token %}
-            <input name="start_time" id="start_time" type="datetime-local">
-            <br>
-            <input name="end_time" id="end_time" type="datetime-local">
-            <br>
-            
-            <br>
-            <button type="submit">Book room</button>
-        </form>
+        <div class="card w-50 m-2">
+            <div class="card-header h3">
+                Booking form
+            </div>
+
+            <div class="card-body">
+                <div style="padding: 10px; color: var(--bs-body-color-rgb)" class="color:--bs-info-text-emphasis">
+                    Room {{room.number}}
+                    <br>
         
+                    Price {{room.price}} $ (per night)
+                </div>
+                <form action="" method="POST" style="padding: 10px">
+                    {% csrf_token %}
+                        <label for="start_time" class="form-label">Start time:</label>
+                        <br>
+                        <input name="start_time" id="start_time" type="datetime-local" style="border: solid var(--bs-primary-border-subtle); border-radius:5px;">
+                        <br>
+                        <br>
+                        <label for="end_time" class="form-label">End time:</label>
+                        <br>
+                        <input name="end_time" id="end_time" type="datetime-local" style="border: solid var(--bs-primary-border-subtle); border-radius:5px;">
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Book room</button>
+                    </form>            
+            </div>
+      </div>
+
+
     {% else %}
         <h1>Unauthenticated users can't book a room!</h1>
     {%endif%}
+    <script>
 
+    </script>
 {% endblock body %}
