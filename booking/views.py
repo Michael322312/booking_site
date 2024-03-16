@@ -19,13 +19,13 @@ def get_hotels_in_country(request):
     hotels = Hotel.objects.filter(country=request.GET.get('country'))
     context = {
         "hotels": hotels,
-        
     }
     return render(
         request,
         "country_hotels.html",
         context
     )
+
 
 def get_hotel_rooms(request, hotel_id):
     hotel = Hotel.objects.get(id=hotel_id)
@@ -37,6 +37,7 @@ def get_hotel_rooms(request, hotel_id):
         "hotel_rooms.html",
         context
     )
+
 
 def booking_details(request, pk:int):
     booking = Booking.objects.get(id=pk)
