@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block body %}
+
+    <div class="card p-2 m-2" style="width: 25rem;">
+        <h2 class="card-title">{{hotel.name}}</h2>
+        <div style="margin: 20px;">
+            <div class="card-subtitle mb-2 text-body-secondary">Country: <mark class="text-success bg-transparent">{{hotel.country}}</mark></div>
+            <div class="card-subtitle mb-2 text-body-secondary">City: <mark class="text-success bg-transparent">{{hotel.city}}</mark></div>
+            <div class="card-subtitle mb-1 text-body-secondary">Info: <mark class="text-primary bg-transparent">{{hotel.info}}</mark></div>
+        </div>
+    </div>
+    <div class="p-2 m-2 pb-5">
+        <h3>Here is a list of avaliable rooms</h3>
+        <ul style="margin: 10px;" class="list-group">
+            <br>
+            {%for room in hotel.rooms.all%}
+                <a href="/booking/{{room.id}}" style="text-decoration: inherit; color: black;">
+                    <li style="border-style: groove; width: 30%; font-size: large;" class="list-group-item">
+                        Room number <mark class="text-primary bg-transparent">{{room.number}}</mark>
+                        <br>
+                        <div style="font-size: smaller; margin-left: 10px">
+                            Capacity: <mark class="text-primary bg-transparent">{{room.capacity}}</mark>
+                            <br>
+                            Price: <mark class="text-primary bg-transparent">{{room.price}} $</mark>
+                            <br>
+                            Description: 
+                            <mark class="text-primary bg-transparent">"{{room.description}}"</mark>
+                        </div>
+                    </li>
+                    <br>
+                </a>
+            {%endfor%}
+        </ul>
+    </div>
+{% endblock body %}

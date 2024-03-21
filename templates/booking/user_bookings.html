@@ -1,0 +1,33 @@
+
+{% extends 'index.html' %}
+{% block body %}
+    {% if user_bookings %}
+        <div class="m-3">
+            <h2>Here is a list of your bookings:</h2>
+            <ul class="list-group w-50">
+                    {% for booking in user_bookings%}
+                        <div class="card w-75 m-3">
+                            <h5 class="card-header">Booking №{{booking.id}}</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">Booking information:</h5>
+                                <p class="card-text m-3 font-b">
+                                    User: <mark class="text-primary bg-transparent">{{booking.user.username}}</mark>
+                                    <br>
+                                    Created at: <mark class="text-success bg-transparent">"{{booking.created_at}}"</mark>
+                                    <br>
+                                    Booked from <mark class="text-danger bg-transparent">"{{booking.start_time}}"</mark> to <mark class="text-danger bg-transparent">"{{booking.end_time}}"</mark>
+                                    <br>
+                                    Hotel: <a href="/hotel/{{booking.room.hotel.id}}" class="text-primary link-offset-2 link-offset-2-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" >{{booking.room.hotel.name}}</a>
+                                    <br>
+                                    Room number: {{booking.room.number}}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+            <h2>You don't have any bookings right now!</h2>
+        {% endif %}
+{% endblock body %}
+
