@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block body %}
+    <div class="m-5">
+        <h1 class="display-5">Hello, {{user.username}}!</h1>
+        <div class="list-group" style="width:40%">
+            <a href="{% url 'user_bookings' %}" class="list-group-item list-group-item-action">Your bookings</a>
+            <a href="{% url 'edit_user' %}" class="list-group-item list-group-item-action">Account info</a>
+        </div>
+    </div>
+{% endblock body %}

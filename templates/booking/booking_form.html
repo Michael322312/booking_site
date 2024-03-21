@@ -1,0 +1,69 @@
+
+{% extends 'index.html' %}
+{% block body %}
+    {% if request.user.is_authenticated %}
+            <div class="card w-50 m-2">
+                <div class="card-header h3">
+                    Booking form
+                </div>
+
+                <div class="card-body">
+                    <div style="padding: 10px; color: var(--bs-body-color-rgb)" class="color:--bs-info-text-emphasis">
+                        Room {{room.number}}
+                        <br>
+            
+                        Price {{room.price}} $ (per night)
+                    </div>
+                    <form action="" method="POST" style="padding: 10px">
+                        {% csrf_token %}
+                            <label for="start_time" class="form-label">Start time:</label>
+                            <br>
+                            <input name="start_time" id="start_time" type="datetime-local" style="border: solid var(--bs-primary-border-subtle); border-radius:5px;">
+                            <br>
+                            <br>
+                            <label for="end_time" class="form-label">End time:</label>
+                            <br>
+                            <input name="end_time" id="end_time" type="datetime-local" style="border: solid var(--bs-primary-border-subtle); border-radius:5px;">
+                            <br>
+                            <br>
+                            Total: <span id="totalPrice"></span>$
+                            <br>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Book room</button>
+                        </form>            
+                </div>
+        </div>
+
+
+        <script>
+            function calculatePrice() {
+                var startDateTime = new Date(document.getElementById("start_time").value);
+                var endDateTime = new Date(document.getElementById("end_time").value);
+
+                // Calculate duration in days
+                var durationInDays = Math.ceil((endDateTime - startDateTime) / (1000 * 60 * 60 * 24));
+
+                // Assuming price per day is ${{ room.price }} (you can change this value)
+                var pricePerDay = {{ room.price }};
+
+                // Calculate total price
+                var totalPrice = durationInDays * pricePerDay;
+
+                // Update the total price on the page
+                document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
+            }
+             // Event listeners to trigger price calculation when input fields change
+             document.getElementById("start_time").addEventListener("change", calculatePrice);
+            document.getElementById("end_time").addEventListener("change", calculatePrice);
+
+            // Initial calculation when the page loads
+            calculatePrice();
+        </script>
+
+
+
+    {% else %}
+        <h2>Unauthenticated users can't book a room!</h2>
+    {%endif%}
+    
+{% endblock body %}
