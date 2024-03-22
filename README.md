@@ -3,6 +3,7 @@
 This is Django-based project, where hotel owners
 can create their hotel page, with their rooms. And users can book them with ease.
 
+
 # Features
    In this website included authentication system,
 where users can log in into system and book rooms that they want.
@@ -10,9 +11,18 @@ where users can log in into system and book rooms that they want.
 # How to start project
    So to run project you need to first of all create Virtual Environment.
     `python3.11 -m venv venv`
-   After that you need to connect venv by this command;
+   After that you need to connect venv by this command:
      `source venv/bin/activate`
     Then you need to download `django` and `django-countries`.
+    `pip install django` and `pip install django-countries`
+    And now migrate to create database:
+       `python3 manage.py makemigrations`
+       `python3 manage.py migrate`
+    Now you can run server by this command:
+       `python3 manage.py runserver`
+    But database is empty. And to fill it out, you need to create superuser:
+       `python3 manage.py createsuperuser`
+    And in `/admin` html page in your server you can create, add and delete models.
 
 # Screenshots 
 
