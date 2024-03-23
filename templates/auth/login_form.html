@@ -11,8 +11,11 @@
 
     <form method="POST" action="{% url 'log_in' %}">
         {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Log in</button>
+        <div class="m-3">
+            {{form.as_p}}
+            
+            <button type="submit">Log in</button>
+        </div>
     </form>
 
 

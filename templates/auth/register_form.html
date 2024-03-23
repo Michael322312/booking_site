@@ -3,8 +3,10 @@
 
 <form method="POST" action="{% url 'register' %}">
     {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Register</button>
+    <div class="m-3">
+        {{form.as_p}}
+        <button type="submit">Register</button>
+    </div>
 </form>
 
 {% endblock body %}

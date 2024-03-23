@@ -2,7 +2,7 @@
 {% extends 'index.html' %}
 {% block body %}
     {% if request.user.is_authenticated %}
-            <div class="card w-50 m-2">
+        <div class="card w-50 float-start ">
                 <div class="card-header h3">
                     Booking form
                 </div>
@@ -34,6 +34,16 @@
                 </div>
         </div>
 
+        <div class="float-end w-50 card">
+            <h3 class="card-header">Доступність кімнати №{{ room.number }} на {{ today|date:"F Y" }}</h3>
+            <div class="calendar card-body">
+                {% for day in days_of_month %}
+                    <div class="day {% if day in booked_days %}booked{% else %}free{% endif %}">
+                        {{ day }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
 
         <script>
             function calculatePrice() {
